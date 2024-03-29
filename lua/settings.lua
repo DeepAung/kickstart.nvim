@@ -31,6 +31,8 @@ vim.opt.shellcmdflag = "powershell.exe"
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+vim.keymap.set("n", "H", "^")
+vim.keymap.set("n", "L", "$")
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -62,7 +64,5 @@ vim.keymap.set("n", "<s-tab>", ":tabprevious<cr>", { desc = "Create new tab" })
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  callback = function() vim.highlight.on_yank() end,
 })
