@@ -57,6 +57,9 @@ vim.keymap.set("n", "<leader>x", ":tabclose<cr>", { desc = "Create new tab" })
 vim.keymap.set("n", "<tab>", ":tabnext<cr>", { desc = "Create new tab" })
 vim.keymap.set("n", "<s-tab>", ":tabprevious<cr>", { desc = "Create new tab" })
 
+vim.keymap.set("n", "<A-h>", ":split | term<cr>", { desc = "create [H]orizontal terminal" })
+vim.keymap.set("n", "<A-v>", ":vsplit | term<cr>", { desc = "create [V]orizontal terminal" })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
