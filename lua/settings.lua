@@ -26,6 +26,9 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
+vim.opt.shell = "powershell.exe"
+vim.opt.shellcmdflag = "powershell.exe"
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
