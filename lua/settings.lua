@@ -35,7 +35,6 @@ vim.filetype.add({ extension = { templ = "templ" } })
 --  See `:help vim.keymap.set()`
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
-
 vim.keymap.set("n", "<leader>lf", require("utils").custom_format, { desc = "format current file" })
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
