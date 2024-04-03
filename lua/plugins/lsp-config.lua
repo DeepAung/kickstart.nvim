@@ -16,7 +16,8 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
-        local map = function(keys, func, desc) vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc }) end
+        local map = function(keys, func, desc) vim.keymap.set("n", keys, func,
+            { buffer = event.buf, desc = "LSP: " .. desc }) end
 
         map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
         map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -49,16 +50,37 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+    local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+    local on_attach = function(client, bufnr)
+      if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = augroup,
+          buffer = bufnr,
+          callback = require("utils").custom_format,
+        })
+      end
+    end
+
     local servers = {
-      html = {},
       cssls = {},
       tsserver = {},
       clangd = {},
       volar = {},
-      tailwindcss = {},
-      htmx = {},
       sqlls = {},
       pyright = {},
+
+      html = {
+        filetypes = { "html", "templ" },
+      },
+      htmx = {
+        filetypes = { "html", "templ" },
+      },
+      tailwindcss = {
+        filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+        init_options = { userLanguages = { templ = "html" } },
+      },
+      templ = {},
 
       lua_ls = {
         settings = {
@@ -106,6 +128,8 @@ return {
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
           server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+          server.on_attach = on_attach
+
           require("lspconfig")[server_name].setup(server)
         end,
       },

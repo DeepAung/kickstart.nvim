@@ -29,10 +29,14 @@ vim.opt.scrolloff = 10
 vim.opt.shell = "powershell.exe"
 vim.opt.shellcmdflag = "powershell.exe"
 
+vim.filetype.add({ extension = { templ = "templ" } })
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
+
+vim.keymap.set("n", "<leader>lf", require("utils").custom_format, { desc = "format current file" })
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -52,13 +56,7 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-vim.keymap.set("n", "<leader>t", ":tabnew<cr>", { desc = "Create new tab" })
-vim.keymap.set("n", "<leader>x", ":tabclose<cr>", { desc = "Create new tab" })
-vim.keymap.set("n", "<tab>", ":tabnext<cr>", { desc = "Create new tab" })
-vim.keymap.set("n", "<s-tab>", ":tabprevious<cr>", { desc = "Create new tab" })
-
-vim.keymap.set("n", "<A-h>", ":split | term<cr>", { desc = "create [H]orizontal terminal" })
-vim.keymap.set("n", "<A-v>", ":vsplit | term<cr>", { desc = "create [V]orizontal terminal" })
+vim.keymap.set("n", "<leader>x", ":bdelete<cr>", { desc = "Create new tab" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
