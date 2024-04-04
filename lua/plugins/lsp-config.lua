@@ -52,12 +52,15 @@ return {
 
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
     local on_attach = function(client, bufnr)
+      local custom_format = require("utils").custom_format
+      vim.keymap.set("n", "<leader>lf", custom_format, { desc = "format current file" })
+
       if client.supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
           group = augroup,
           buffer = bufnr,
-          callback = require("utils").custom_format,
+          callback = custom_format,
         })
       end
     end
