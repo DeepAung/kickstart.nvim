@@ -72,6 +72,7 @@ return {
       volar = {},
       sqlls = {},
       pyright = {},
+      emmet_ls = {},
 
       html = {
         filetypes = { "html", "templ" },
@@ -80,7 +81,7 @@ return {
         filetypes = { "html", "templ" },
       },
       tailwindcss = {
-        filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+        filetypes = { "html", "templ", "astro", "javascript", "typescript", "react" },
         init_options = { userLanguages = { templ = "html" } },
       },
       templ = {},

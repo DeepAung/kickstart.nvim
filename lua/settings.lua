@@ -29,7 +29,12 @@ vim.opt.scrolloff = 10
 vim.opt.shell = "powershell.exe"
 vim.opt.shellcmdflag = "powershell.exe"
 
-vim.filetype.add({ extension = { templ = "templ" } })
+vim.filetype.add({
+  extension = { templ = "templ" },
+  pattern = {
+    ["%.env%.[%w_.-]+"] = "sh",
+  },
+})
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
