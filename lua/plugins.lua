@@ -1,7 +1,7 @@
 return {
   -- Detect tabstop and shiftwidth automatically
   "tpope/vim-sleuth",
-  { "lukas-reineke/indent-blankline.nvim", opts = {} },
+  -- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   {
     "folke/todo-comments.nvim",
     event = "VimEnter",
