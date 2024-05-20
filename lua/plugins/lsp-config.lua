@@ -16,7 +16,8 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
-        local map = function(keys, func, desc) vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc }) end
+        local map = function(keys, func, desc) vim.keymap.set("n", keys, func,
+            { buffer = event.buf, desc = "LSP: " .. desc }) end
 
         map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
         map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -71,7 +72,7 @@ return {
       vuels = {},
       sqlls = {},
       pyright = {},
-      emmet_ls = {},
+      emmet_ls = { "html", "templ" },
 
       html = {
         filetypes = { "html", "templ" },
@@ -120,6 +121,10 @@ return {
     vim.list_extend(ensure_installed, {
       "stylua", -- Used to format Lua code
       "prettier",
+      "clang-format",
+      "gofumpt",
+      "goimports",
+      "golines",
     })
 
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

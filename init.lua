@@ -30,4 +30,5 @@ local opts = {
 }
 
 require("settings")
+require("ignored.settings")
 require("lazy").setup("plugins", opts)
