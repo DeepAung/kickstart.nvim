@@ -69,10 +69,12 @@ return {
       cssls = {},
       tsserver = {},
       clangd = {},
-      vuels = {},
+      volar = {},
       sqlls = {},
       pyright = {},
-      emmet_ls = { "html", "templ" },
+      emmet_ls = {
+        filetypes = { "html", "templ" },
+      },
 
       html = {
         filetypes = { "html", "templ" },

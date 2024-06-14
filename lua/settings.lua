@@ -26,6 +26,9 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 vim.filetype.add({
   extension = { templ = "templ" },
   pattern = {
@@ -38,9 +41,19 @@ vim.filetype.add({
 vim.keymap.set({ "n", "v" }, "H", "^")
 vim.keymap.set({ "n", "v" }, "L", "$")
 
+-- vim.keymap.set({ "n", "v" }, "h", "gh")
+-- vim.keymap.set({ "n", "v" }, "j", "gj")
+-- vim.keymap.set({ "n", "v" }, "k", "gk")
+-- vim.keymap.set({ "n", "v" }, "l", "gl")
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+vim.keymap.set("n", "<A-h>", ":vertical-resize +5<CR>")
+vim.keymap.set("n", "<A-j>", ":resize -5<CR>")
+vim.keymap.set("n", "<A-k>", ":resize +5<CR>")
+vim.keymap.set("n", "<A-l>", ":vertical-resize -5<CR>")
 
 vim.keymap.set("n", "<leader><Tab>", ":tabnext<CR>", { desc = "Go to next tab" })
 vim.keymap.set("n", "<leader><S-Tab>", ":tabprevious<CR>", { desc = "Go to previous tab" })
